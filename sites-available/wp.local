@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name     wp.local;
+    access_log      /var/log/nginx/localhost.blog.access.log;
+    error_log       /var/log/nginx/localhost.blog.error.log;
+
+    location / {
+        root /home/bobiko/www/$host;
+        index index.php index.html index.htm;
+        try_files $uri /index.php?q=$request_uri&$query_string;
+    }
+    
+    include /etc/nginx/rules/default.conf;
+    include /etc/nginx/rules/php.conf;
+}
+
+## include /etc/nginx/rules/backend.conf;

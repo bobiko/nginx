@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name sql.local;
+    access_log /var/log/nginx/sql.local.access.log;
+    error_log /var/log/nginx/sql.local.error.log;
+
+    location / {
+        root /home/bobiko/www/$host;
+        index index.php;
+    }
+
+    include /etc/nginx/rules/default.conf;
+    include /etc/nginx/rules/php.conf;
+}
